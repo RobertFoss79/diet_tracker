@@ -18,6 +18,15 @@ This project reflects my own journey through VLCD compliance, metabolic recovery
 
 Currently in development. Core data entry functions are being scaffolded. Future features will include summary analytics and file output.
 
+## Data Sources
+
+All metrics and activity data are recorded using real-world tools:
+
+- **BeWell Scale**: Used for weekly body composition metrics including weight, body fat %, visceral fat, muscle mass, bone mass, and more.
+- **Samsung Galaxy Watch6**: Used to track daily walks, including distance, duration, average heart rate, calories burned, and step count.
+
+These devices provide consistent, structured data that feeds into the tracker. The program is designed to be flexible—users can adapt it to their own gear and measurement routines.
+
 ## How to Use
 
 Run the program in terminal and follow the prompts to enter daily data. All entries are stored in memory or written to file (depending on version).
