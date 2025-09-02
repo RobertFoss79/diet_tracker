@@ -1,12 +1,12 @@
 # Diet Tracker
 
-This is a personal diet tracking application built in Python. It logs daily metrics, meals, activity data, and emotional reflections to support metabolic discipline and long-term health transformation.
+This is a personal diet tracking application built in Python. It logs weekly metrics, meals, activity data, and emotional reflections to support metabolic discipline and long-term health transformation.
 
 ## Features
 
-- Add daily entries with weight, body fat %, visceral fat, and muscle mass
-- Log meals with macro breakdowns (calories, protein, fat)
-- Track physical activity (miles walked, calories burned, heart rate)
+- Add weekly entries with weight, body fat %, BMI, BMR, visceral fat, muscle mass, bone mass, protein %, water %, and skeletal muscle.
+- Log meals with macro breakdowns (calories, protein)
+- Track physical activity (miles walked, length of time walked, calories burned, average heart rate, and steps)
 - Record emotional reflections for each day
 - Future plans: CSV export, average rate calculations, and real-time summaries
 
@@ -24,4 +24,4 @@ Run the program in terminal and follow the prompts to enter daily data. All entr
 
 ---
 
-Built with sweat, discipline, and a few broken yolks.
+Built with sweat, discipline, and a few broken egg yolks.
