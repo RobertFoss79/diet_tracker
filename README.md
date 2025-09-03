@@ -31,6 +31,36 @@ These devices provide consistent, structured data that feeds into the tracker. T
 
 Run the program in terminal and follow the prompts to enter daily data. All entries are stored in memory or written to file (depending on version).
 
+## Quick Start
+
+To begin tracking:
+
+1. Clone the repository
+2. Run `main.py` in your terminal
+3. Follow the prompts to log metrics, meals, and activity
+
+## Design Philosophy
+
+This project follows a modular design approach. Each core function—such as metric parsing, food logging, activity tracking, and timestamp handling—is separated into its own file. This simplifies debugging, keeps each module focused, and makes future upgrades easier to manage.
+
+### Module Overview
+
+- `parse_metrics.py` — handles unit tagging and timestamp integration
+- `log_metrics.py` — handles user input for scale data
+- `timestamp.py` — provides reusable date/time logic
+- `food.py` — logs meals with macro breakdowns and satiety tagging
+- `activity.py` — tracks physical movement, heart rate, and emotional reflections
+
+## License
+
+This project is for personal use and educational exploration.  
+Feel free to fork, adapt, or build your own version.
+
+## Contributions
+
+Built solo as a learning artifact.  
+No external contributions planned at this time.
+
 ---
 
 Built with sweat, discipline, and a few broken egg yolks.
