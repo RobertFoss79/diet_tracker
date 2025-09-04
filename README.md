@@ -10,6 +10,21 @@ This is a personal diet tracking application built in Python. It logs weekly met
 - Record emotional reflections for each day
 - Future plans: CSV export, average rate calculations, and real-time summaries
 
+### 📦 Weight Tracking Summary Tool
+
+This module was added as a personal enhancement. It wasn’t part of the original roadmap, but I was manually reviewing weekly weight logs and behavioral trends, so I decided to formalize the process.
+
+The tool includes:
+
+- Metric-by-metric summaries (weight, fat %, muscle, hydration, etc.)
+- Weekly and daily weight change calculations
+- Rolling 7-day deltas
+- Milestone detection (every 10 lbs from 260 down)
+- Visual dashboard using `matplotlib`
+- CSV export for spreadsheet analysis
+
+> **Note:** This module was co-developed with the help of AI (Microsoft Copilot). It accelerated the buildout and helped modularize logic I was already applying manually. While designed for personal use, others may find it useful for tracking progress or visualizing health metrics.
+
 ## Why I Built This
 
 This project reflects my own journey through VLCD compliance, metabolic recovery, and emotional clarity. It’s not just code—it’s a living artifact of discipline, frustration, and growth. I built it from scratch to learn how to structure Python programs and apply them to real-world routines.
