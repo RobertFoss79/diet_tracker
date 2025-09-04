@@ -1,5 +1,5 @@
 from log_metrics import log_metrics
-# from log_food import log_food        # To be added later
+from log_food import log_food
 # from log_activity import log_activity  # To be added later
 from csv_utils import load_existing_csv, save_to_csv
 
@@ -20,9 +20,9 @@ def main():
             save_to_csv("metrics_log.csv", new_data_list)
 
         elif choice == "2":
-            # FOOD LOGGING (placeholder)
-            load_existing_csv("food_log.csv")
-            print("Food logging not yet implemented.")
+            new_data_list = log_food()
+            save_to_csv("food_log.csv", new_data_list)
+
 
         elif choice == "3":
             # ACTIVITY LOGGING (placeholder)
