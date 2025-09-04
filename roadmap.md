@@ -7,11 +7,11 @@ This roadmap outlines the planned features, upgrades, and emotional ROI goals fo
 - Modular input functions for metrics, food, and activity
 - Timestamp logic with optional manual override
 - Structured README with design philosophy and module overview
+- `log_metrics.py` — interactive input flow for weekly scale data
+- `food.py` — macro logging with satiety tagging and timestamp
 
 ## 🔧 In Progress
 
-- `log_metrics.py` — interactive input flow for weekly scale data
-- `food.py` — macro logging with satiety tagging and timestamp
 - `activity.py` — movement tracking with heart rate and emotional reflections
 
 ## 🧠 Planned Features
