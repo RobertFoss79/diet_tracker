@@ -1,6 +1,6 @@
 from log_metrics import log_metrics
 from log_food import log_food
-# from log_activity import log_activity  # To be added later
+from log_activity import log_activity
 from csv_utils import load_existing_csv, save_to_csv
 
 def main():
@@ -15,20 +15,25 @@ def main():
 
         if choice == "1":
             # METRICS LOGGING
-            load_existing_csv("metrics_log.csv")  # Load existing file if present (for continuity)
-            new_data_list = log_metrics()         # Get new metrics from user (list of dicts)
+            load_existing_csv("metrics_log.csv")
+            new_data_list = log_metrics()
+            new_data_list.sort(key=lambda x: x['timestamp'])  # ⬅️ Sort by timestamp
             save_to_csv("metrics_log.csv", new_data_list)
 
         elif choice == "2":
             # Food Logging
             new_data_list = log_food()
+            new_data_list.sort(key=lambda x: x['timestamp'])  # ⬅️ Sort by timestamp
             save_to_csv("food_log.csv", new_data_list)
 
 
+
         elif choice == "3":
-            # ACTIVITY LOGGING (placeholder)
-            load_existing_csv("activity_log.csv")
-            print("Activity logging not yet implemented.")
+            # Activity Logging
+            activity_entries = log_activity()
+            activity_entries.sort(key=lambda x: x['timestamp'])
+            save_to_csv('activity_log.csv', activity_entries)
+
 
         elif choice == "4":
             print("Exiting. Stay compliant, stay kind.")
