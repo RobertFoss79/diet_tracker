@@ -20,6 +20,7 @@ def main():
             save_to_csv("metrics_log.csv", new_data_list)
 
         elif choice == "2":
+            # Food Logging
             new_data_list = log_food()
             save_to_csv("food_log.csv", new_data_list)
 
