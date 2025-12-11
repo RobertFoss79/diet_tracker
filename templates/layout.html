@@ -8,12 +8,13 @@
 </head>
 <body>
     <header>
-        <h1>📊 The Coding Gem Diet Tracker</h1>
+        <h1>📊 Personal Diet Tracker</h1>
         <nav>
             <a href="{{ url_for('index') }}">🍽️ Log Food</a>
             <a href="{{ url_for('log_activity') }}">🏃 Log Activity</a>
             <a href="{{ url_for('log_metrics') }}">📈 Log Metrics</a>
             <a href="{{ url_for('summary') }}">📋 View Summary</a>
+            <a href="{{ url_for('history') }}">📅 View History</a>
             <a href="{{ url_for('manage_food') }}">📚 Food Dictionary</a>
         </nav>
     </header>
