@@ -44,7 +44,7 @@ This page provides the core analytical functionality requested:
 
 * Allows the user to filter and view past food log entries by a specific date range, providing necessary historical log access for detailed review.
 
-## 💻 Setup and Installation
+## Setup and Installation
 
 1.  **Install Dependencies:**
     ```bash
