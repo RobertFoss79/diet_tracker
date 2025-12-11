@@ -1,10 +1,11 @@
-# 🥗 Diet Tracker: Comprehensive Health Logging Application
+# Personal Diet Tracker
+#### Demo Video: https://www.youtube.com/shorts/6_Jv2_ObSaI ####
 
 This is a Flask-based diet and fitness logging application designed to replace the user's previous set of command-line interface (CLI) scripts with a modern, integrated web interface. It provides comprehensive tracking for food, physical activity, and detailed body metrics, along with an integrated summary and analysis page.
 
 The application uses **Flask**, **Flask-SQLAlchemy** for database management, and **Flask-Migrate** for robust database version control.
 
-## 💾 Database Models & Persistence
+## Database Models & Persistence
 
 The application uses four distinct database models to manage data integrity:
 
@@ -15,7 +16,7 @@ The application uses four distinct database models to manage data integrity:
 | `ActivityEntry` | **Daily Log** of exercise. | Date, Activity Type, Duration, Calories Burned, Distance | Tracks energy expenditure. |
 | `WeighIn` | **Body Metrics** from BeWell scale. | Date, **10 specific BeWell metric fields** (Weight, Fat%, BMR, Muscle, etc.) | Provides complex historical data for trend analysis. |
 
-## 🚀 Application Functionality
+## Application Functionality
 
 ### 1. Food Logging (`/` and `/manage_food`)
 
@@ -43,7 +44,7 @@ This page provides the core analytical functionality requested:
 
 * Allows the user to filter and view past food log entries by a specific date range, providing necessary historical log access for detailed review.
 
-## 💻 Setup and Installation
+## Setup and Installation
 
 1.  **Install Dependencies:**
     ```bash
