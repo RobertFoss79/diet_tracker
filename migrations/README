@@ -5,7 +5,7 @@ This is a Flask-based diet and fitness logging application designed to replace t
 
 The application uses **Flask**, **Flask-SQLAlchemy** for database management, and **Flask-Migrate** for robust database version control.
 
-## 💾 Database Models & Persistence
+## Database Models & Persistence
 
 The application uses four distinct database models to manage data integrity:
 
@@ -16,7 +16,7 @@ The application uses four distinct database models to manage data integrity:
 | `ActivityEntry` | **Daily Log** of exercise. | Date, Activity Type, Duration, Calories Burned, Distance | Tracks energy expenditure. |
 | `WeighIn` | **Body Metrics** from BeWell scale. | Date, **10 specific BeWell metric fields** (Weight, Fat%, BMR, Muscle, etc.) | Provides complex historical data for trend analysis. |
 
-## 🚀 Application Functionality
+## Application Functionality
 
 ### 1. Food Logging (`/` and `/manage_food`)
 
