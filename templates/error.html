@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block main %}
+    <div class="error-container">
+        <h2>⚠️ Error Occurred</h2>
+        
+        {% if message %}
+            <p class="error-message">{{ message }}</p>
+        {% else %}
+            <p class="error-message">An unexpected error occurred. Please try again.</p>
+        {% endif %}
+
+        <p>
+            <a href="javascript:history.back()" class="button-secondary">Go Back</a>
+            or <a href="{{ url_for('index') }}">Go to Home</a>
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Application Summary{% endblock %}
+
+{% block main %}
+    <h2>📋 Application Summary & Current Status</h2>
+    <p class="description">This page provides an overview of your progress, including daily net calories and overall metric trends since your first weigh-in.</p>
+    
+    <hr>
+    
+<h3>📈 Body Metric Trends</h3>
+    {% if latest_weighin %}
+        {% if metric_trends %}
+            <p>Latest Weigh-In Date: <strong>{{ latest_weighin.date_logged.strftime('%Y-%m-%d') }}</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Latest Value</th>
+                        <th>Total Change</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for col_name, data in metric_trends.items() %}
+                    <tr>
+                        <td>{{ data.label }}</td>
+                        <td>{{ data.latest_value | round(1) }}</td>
+                        <td class="{{ 'gain' if data.change > 0 else 'loss' if data.change < 0 else 'no-change' }}">
+                            {{ data.change | round(1) | format('%+.1f') }} ({{ data.trend }})
+                        </td>
+                        <td>{{ data.unit }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="alert-message">
+                ⚠️ **Trend Analysis requires at least two weigh-in entries.** <br>
+                Your latest entry ({{ latest_weighin.date_logged.strftime('%Y-%m-%d') }}) is logged, but we need one more to calculate the change.
+                Please log your next weigh-in to see your progress!
+            </p>
+        {% endif %}
+    {% else %}
+        <p class="alert-message">
+            ⚠️ No historical weigh-in data found. Please log your first metric entry on the <a href="{{ url_for('log_metrics') }}">Log Metrics</a> page.
+        </p>
+    {% endif %}
+
+    <hr>
+
+<hr>
+
+    <h3>🔥 Daily Calorie Deficit/Surplus</h3>
+    <p>Calculation: (Consumed) - (BMR + Activity Burned)</p>
+    {% if daily_totals %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Deficit/Surplus</th> <th>Consumed (kcal)</th>
+                    <th>BMR (kcal)</th> <th>Activity Burned (kcal)</th>
+                    <th>Total Expenditure (kcal)</th> <th>Protein (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Fat (g)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in daily_totals %}
+                <tr>
+                    <td><strong>{{ day.date }}</strong></td>
+                    <td style="font-weight: bold; color: {{ 'red' if day.cal_deficit_surplus > 0 else 'green' }}">
+                        {{ day.cal_deficit_surplus | round(0) }}
+                    </td>
+                    <td>{{ day.calories_consumed | round(0) }}</td>
+                    <td>{{ day.bmr | round(0) }}</td> <td>{{ day.calories_burned | round(0) }}</td>
+                    <td>{{ day.total_expenditure | round(0) }}</td> <td>{{ day.protein_consumed | round(1) }}</td>
+                    <td>{{ day.carbs_consumed | round(1) }}</td>
+                    <td>{{ day.fat_consumed | round(1) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No food or activity data found. Log your meals and workouts to see your daily totals.</p>
+    {% endif %}
+{% endblock %}

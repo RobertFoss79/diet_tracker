@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}Log Food Intake{% endblock %}
+
+{% block main %}
+    <h2>🍽️ Log a New Meal</h2>
+    <form method="POST">
+        
+        <label for="date_eaten">Date of Meal:</label>
+        <input type="date" id="date_eaten" name="date_eaten" value="{{ today }}" required>
+        
+        <label for="food_item_id">Select Food Item:</label>
+        <select id="food_item_id" name="food_item_id" required>
+            <option value="" disabled selected>--- Select from Dictionary ---</option>
+            {% for item in food_dictionary %}
+                <option value="{{ item.id }}">
+                    {{ item.name }} ({{ item.calories }} cal | P:{{ item.protein }} | C:{{ item.carbs }} | F:{{ item.fat }})
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="serving_multiplier">Serving Multiplier (e.g., 1.5 for 1.5 servings):</label>
+        <input type="number" id="serving_multiplier" name="serving_multiplier" min="0.01" step="0.01" value="1" required>
+
+        <label for="notes">Notes (optional):</label>
+        <textarea id="notes" name="notes" rows="2" placeholder="Meal time, source, etc."></textarea>
+        
+        <button type="submit">Log Food Entry</button>
+    </form>
+
+    <hr>
+
+    <h3>Your Recent Food Entries</h3>
+    {% if food_entries %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Food Item</th>
+                    <th>Servings</th>
+                    <th>Total Calories</th>
+                    <th>Protein (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Fat (g)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in food_entries %}
+                <tr>
+                    <td>{{ entry.date_eaten.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ entry.food_name }}</td>
+                    <td>{{ entry.serving_multiplier | round(2) }}</td>
+                    <td>{{ entry.calories }}</td>
+                    <td>{{ entry.protein | round(1) }}</td> 
+                    <td>{{ entry.carbs | round(1) }}</td>
+                    <td>{{ entry.fat | round(1) }}</td>
+                    <td>{{ entry.notes if entry.notes else '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No food entries logged yet. Time to start tracking! <a href="{{ url_for('manage_food') }}">Add an item to your dictionary.</a></p>
+    {% endif %}
+
+    <p>
+        <a href="{{ url_for('manage_food') }}">Manage Food Dictionary (Add/Edit Food Items)</a>
+    </p>
+
+{% endblock %}

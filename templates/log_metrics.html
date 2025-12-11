@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Log Comprehensive Metrics{% endblock %}
+
+{% block main %}
+    <h2>📈 Log Your Comprehensive Metrics (Weigh-In)</h2>
+    <p>Please enter all 10 metric values for your weigh-in. All fields are required to track progress accurately.</p>
+    
+    <form method="POST">
+        
+        <label for="date_logged">Date of Weigh-In:</label>
+        <input type="date" id="date_logged" name="date_logged" value="{{ today }}" required>
+
+        <div class="metric-group">
+            <h3>Core Metrics</h3>
+            <label for="weight_lbs">Weight (lbs):</label>
+            <input type="number" id="weight_lbs" name="weight_lbs" required min="1" step="0.1" placeholder="e.g., 250.5">
+
+            <label for="fat_pct">Body Fat Percentage (%):</label>
+            <input type="number" id="fat_pct" name="fat_pct" required min="0" step="0.1" placeholder="e.g., 35.2">
+
+            <label for="bmi">BMI (%):</label>
+            <input type="number" id="bmi" name="bmi" required min="0" step="0.1" placeholder="e.g., 36.7">
+
+            <label for="bmr_kcal">BMR (kcal/day):</label>
+            <input type="number" id="bmr_kcal" name="bmr_kcal" required min="1000" step="1" placeholder="e.g., 2181">
+        </div>
+
+        <div class="metric-group">
+            <h3>Body Composition</h3>
+            <label for="visceral_fat">Visceral Fat:</label>
+            <input type="number" id="visceral_fat" name="visceral_fat" required min="1" step="0.1" placeholder="e.g., 28.0">
+
+            <label for="muscle_lbs">Muscle (lbs):</label>
+            <input type="number" id="muscle_lbs" name="muscle_lbs" required min="0" step="0.1" placeholder="e.g., 159.8">
+
+            <label for="bone_mass_lbs">Bone Mass (lbs):</label>
+            <input type="number" id="bone_mass_lbs" name="bone_mass_lbs" required min="0" step="0.1" placeholder="e.g., 6.3">
+
+            <label for="protein_pct">Protein (%):</label>
+            <input type="number" id="protein_pct" name="protein_pct" required min="0" step="0.1" placeholder="e.g., 13.3">
+
+            <label for="water_pct">Water (%):</label>
+            <input type="number" id="water_pct" name="water_pct" required min="0" step="0.1" placeholder="e.g., 48.9">
+            
+            <label for="skeletal_muscle_lbs">Skeletal Muscle (lbs):</label>
+            <input type="number" id="skeletal_muscle_lbs" name="skeletal_muscle_lbs" required min="0" step="0.1" placeholder="e.g., 86.1">
+        </div>
+        
+        <button type="submit">Log Full Weigh-In</button>
+    </form>
+
+    <hr>
+
+    <h3>Your Recent Weigh-Ins (Last 10)</h3>
+    {% if weighins %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Weight (lbs)</th>
+                    <th>Fat (%)</th>
+                    <th>BMI (%)</th>
+                    <th>BMR (kcal)</th>
+                    <th>Visceral Fat</th>
+                    <th>Muscle (lbs)</th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for entry in weighins %}
+                <tr>
+                    <td>{{ entry.date_logged.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ entry.weight_lbs | round(1) }}</td>
+                    <td>{{ entry.fat_pct | round(1) }}</td>
+                    <td>{{ entry.bmi | round(1) }}</td>
+                    <td>{{ entry.bmr_kcal | round(0) }}</td>
+                    <td>{{ entry.visceral_fat | round(0) }}</td>
+                    <td>{{ entry.muscle_lbs | round(1) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No metrics logged yet. Log your first weigh-in above!</p>
+    {% endif %}
+
+{% endblock %}

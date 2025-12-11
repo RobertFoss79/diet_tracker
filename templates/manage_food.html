@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Manage Food Dictionary{% endblock %}
+
+{% block main %}
+    <h2>📚 Add New Food Item to Dictionary</h2>
+    <form method="POST">
+        
+        <label for="name">Food/Recipe Name (Unique):</label>
+        <input type="text" id="name" name="name" required placeholder="e.g., Protein Shake - Vanilla">
+        
+        <label for="calories">Calories (kcal) per serving:</label>
+        <input type="number" id="calories" name="calories" required min="0" placeholder="e.g., 200">
+        
+        <label for="protein">Protein (g) per serving:</label>
+        <input type="number" id="protein" name="protein" required min="0" step="0.1" placeholder="e.g., 30.5">
+        
+        <label for="carbs">Carbs (g) per serving:</label>
+        <input type="number" id="carbs" name="carbs" required min="0" step="0.1" placeholder="e.g., 15">
+        
+        <label for="fat">Fat (g) per serving:</label>
+        <input type="number" id="fat" name="fat" required min="0" step="0.1" placeholder="e.g., 5.2">
+        
+        <button type="submit">Add to Dictionary</button>
+    </form>
+
+    <hr>
+
+    <h3>Existing Food Items</h3>
+    {% if dictionary_items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Calories</th>
+                    <th>Protein (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Fat (g)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in dictionary_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.calories }}</td>
+                    <td>{{ item.protein | round(1) }}</td>
+                    <td>{{ item.carbs | round(1) }}</td>
+                    <td>{{ item.fat | round(1) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Your food dictionary is empty! Please add a food item above to begin logging.</p>
+    {% endif %}
+
+{% endblock %}

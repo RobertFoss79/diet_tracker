@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}History & Filtered Logs{% endblock %}
+
+{% block main %}
+    <h2>📅 Filtered History (Food Entries)</h2>
+    <p>Use the form below to view your food entries within a specific date range.</p>
+    
+    <form method="GET" action="{{ url_for('history') }}">
+        <label for="start">Start Date:</label>
+        <input type="date" id="start" name="start" value="{{ start_date if start_date else '' }}">
+        
+        <label for="end">End Date:</label>
+        <input type="date" id="end" name="end" value="{{ end_date if end_date else '' }}">
+        
+        <button type="submit">Filter Logs</button>
+        <a href="{{ url_for('history') }}" class="button-secondary">View All</a>
+    </form>
+    
+    <hr>
+    
+    <h3>Food Logs for {{ start_date if start_date else 'All Dates' }} - {{ end_date if end_date else 'Current' }}</h3>
+    {% if filtered_entries %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Food Item</th>
+                    <th>Servings</th> <th>Total Calories</th> <th>Protein (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Fat (g)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in filtered_entries %}
+                <tr>
+                    <td>{{ entry.date_eaten.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ entry.food_name }}</td>
+                    <td>{{ entry.serving_multiplier | round(2) }}</td> <td>{{ entry.calories }}</td> <td>{{ entry.protein | round(1) }}</td> 
+                    <td>{{ entry.carbs | round(1) }}</td>
+                    <td>{{ entry.fat | round(1) }}</td>
+                    <td>{{ entry.notes if entry.notes else '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No food entries found for the selected date range.</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Diet Tracking App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>📊 The Coding Gem Diet Tracker</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">🍽️ Log Food</a>
+            <a href="{{ url_for('log_activity') }}">🏃 Log Activity</a>
+            <a href="{{ url_for('log_metrics') }}">📈 Log Metrics</a>
+            <a href="{{ url_for('summary') }}">📋 View Summary</a>
+            <a href="{{ url_for('manage_food') }}">📚 Food Dictionary</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ datetime.now().year }} Diet Tracker. Stay compliant, stay kind.</p>
+    </footer>
+</body>
+</html>
